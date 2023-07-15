@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoppingshop/commonWidgets/DynamicTable.dart';
+import 'package:shoppingshop/data/dummy_items.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Your Groceries',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Your Groceries'),
     );
   }
 }
@@ -30,14 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,24 +37,16 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: DynamicTable(
-        data: [
-          {
-            'Name': 'John',
-            'Age': '25',
-            'Country': 'USA',
-            "ageda": "m",
-            "量": "m"
-          },
-          {
-            'Name': 'Ana',
-            'Age': '23',
-            'Country': 'Brazil',
-            "ageda": "m",
-            "量": "m"
-          },
-          // Add more data maps here
-        ],
+      body: ListView.builder(
+        itemCount: groceryItems.length,
+        itemBuilder: (ctx, index) => ListTile(
+          leading: CircleAvatar(
+            backgroundColor: groceryItems[index].category.color,
+          ),
+          title: Text(groceryItems[index].name),
+          trailing: Text(groceryItems[index].quantity.toString()),
+          onTap: () {},
+        ),
       ),
     );
   }
