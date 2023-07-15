@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mealsapp/commonWidgets/custom_alert.dart';
+import 'package:shoppingshop/commonWidgets/custom_alert.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   final String title;
